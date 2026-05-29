@@ -4,8 +4,8 @@ import taskLists from 'markdown-it-task-lists'
 
 export default async () => {
   return defineConfig({
-    title: "MiMusic",
-    description: "MiMusic - 自托管个人音乐服务器，支持 WASM 插件扩展，跨平台 Flutter 客户端",
+    title: "Songloft",
+    description: "Songloft - 自托管个人音乐服务器，支持 JS 插件扩展，跨平台 Flutter 客户端",
     // repowiki 是 Qoder IDE 自动生成的中文 wiki，含大量 <cite>/泛型尖括号等占位符，
     // 不适合 VitePress 直接编译（会触发 Vue 模板未闭合标签错误）；保留在仓库里供 GitHub 浏览即可。
     srcExclude: ['repowiki/**'],
@@ -17,16 +17,15 @@ export default async () => {
         { text: '插件', link: '/issues/4' },
         { text: 'FAQ', link: '/faq' },
         { text: '更新日志', link: '/changelog' },
-        { text: 'API 文档', link: 'https://petstore.swagger.io/?url=https://raw.githubusercontent.com/mimusic-org/mimusic/refs/heads/main/docs/swagger.json' },
-        { text: '演示站', link: 'https://examplemimusic.hanxi.cc' },
+        { text: 'API 文档', link: 'https://petstore.swagger.io/?url=https://raw.githubusercontent.com/songloft-org/songloft/refs/heads/main/docs/swagger.json' },
       ],
 
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/mimusic-org/mimusic' }
+        { icon: 'github', link: 'https://github.com/songloft-org/songloft' }
       ],
 
       footer: {
-        message: '基于 <a href="https://github.com/mimusic-org/mimusic/blob/main/LICENSE">Apache 2.0</a> 协议开源',
+        message: '基于 <a href="https://github.com/songloft-org/songloft/blob/main/LICENSE">Apache 2.0</a> 协议开源',
         copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/hanxi">涵曦</a>`,
       },
 
@@ -35,17 +34,17 @@ export default async () => {
       },
 
       editLink: {
-        pattern: 'https://github.com/mimusic-org/mimusic/issues',
+        pattern: 'https://github.com/songloft-org/songloft/issues',
         text: '在 GitHub 上提问'
       },
     },
     sitemap: {
-      hostname: 'https://mimusic.hanxi.cc'
+      hostname: 'https://songloft.hanxi.cc'
     },
     head: [
       ['meta', { name: 'og:type', content: 'website' }],
-      ['meta', { name: 'og:title', content: 'MiMusic - 自托管个人音乐服务器' }],
-      ['meta', { name: 'og:description', content: '简单、自由、插件化的个人音乐服务器，支持 WASM 插件扩展' }],
+      ['meta', { name: 'og:title', content: 'Songloft - 自托管个人音乐服务器' }],
+      ['meta', { name: 'og:description', content: '简单、自由、插件化的个人音乐服务器，支持 JS 插件扩展' }],
       ['script', { defer: true, src: 'https://umami.hanxi.cc/script.js', 'data-website-id': '29cca3f5-e420-432b-adc7-8a1325d31c68' }]
     ],
     lastUpdated: true,
