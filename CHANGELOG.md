@@ -1,3 +1,40 @@
+## [v2.0.0-alpha.1] - 2026-05-29
+### :sparkles: New Features
+- [`58232ea`](https://github.com/songloft-org/songloft/commit/58232ea174ce9fa6e14cdd1c805bf7410220f0c5) - **app**: one-shot mimusic.db -> songloft.db auto migration (v2.0) *(commit by [@hanxi](https://github.com/hanxi))*
+
+### :bug: Bug Fixes
+- [`8e15634`](https://github.com/songloft-org/songloft/commit/8e15634d51f023289afc2c758af9617cec17bf0c) - **ci**: prevent changelog SHA lines from executing as shell commands *(commit by [@hanxi](https://github.com/hanxi))*
+
+### :recycle: Refactors
+- [`65c53cb`](https://github.com/songloft-org/songloft/commit/65c53cb356c6fa7d251137288c2188e6abd870bd) - rename Go module mimusic -> songloft (v2.0) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`fc2d601`](https://github.com/songloft-org/songloft/commit/fc2d601e7768af24c0e1bdd83628cae5d84e246f) - rename JS plugin global ABI mimusic.* -> songloft.* (v2.0) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`c9f05cd`](https://github.com/songloft-org/songloft/commit/c9f05cdb9778f07f08b0df85c0c9b8b33a000469) - rename runtime literals MiMusic -> Songloft (v2.0) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`c32ab18`](https://github.com/songloft-org/songloft/commit/c32ab180dbfd24046cf32798840e06dcc31a35d8) - retire jsplugins aggregator, plugins self-host releases *(commit by [@hanxi](https://github.com/hanxi))*
+
+### :construction_worker: Build System
+- [`e0ff7b5`](https://github.com/songloft-org/songloft/commit/e0ff7b558e27c56fee4fac03a6bce2c19ed083bb) - complete v2.0 rebrand of release workflows (Phase 3h follow-up) *(commit by [@hanxi](https://github.com/hanxi))*
+
+### :memo: Documentation Changes
+- [`1b766d2`](https://github.com/songloft-org/songloft/commit/1b766d2f18b28c3559a5ebaa46bdbe50fa83a138) - add NOTICE and PRIVACY.md for license and privacy compliance *(commit by [@hanxi](https://github.com/hanxi))*
+- [`2f5bbf8`](https://github.com/songloft-org/songloft/commit/2f5bbf8f1c4fd2a6e1785e33ec5d49508d6dbec6) - tighten README disclaimers and remove demo site link *(commit by [@hanxi](https://github.com/hanxi))*
+- [`85244b1`](https://github.com/songloft-org/songloft/commit/85244b1b7c3814fa5fb3c1afa841f94750649b2d) - announce planned v2.0 rebrand to Songloft *(commit by [@hanxi](https://github.com/hanxi))*
+- [`5da054a`](https://github.com/songloft-org/songloft/commit/5da054a440486094375c092cf4d081072ad512fc) - add MIGRATION.md for v2.0 Songloft rebrand *(commit by [@hanxi](https://github.com/hanxi))*
+- [`79c6df9`](https://github.com/songloft-org/songloft/commit/79c6df9ded6c6ce17b5231f27d4a82a28a387ac0) - **swagger**: regenerate Swagger after v2.0 rebrand *(commit by [@hanxi](https://github.com/hanxi))*
+- [`b3b17d7`](https://github.com/songloft-org/songloft/commit/b3b17d75699e2378300227360fd63dfeb1d53b14) - add V2 release playbook + update-remotes helper *(commit by [@hanxi](https://github.com/hanxi))*
+- [`7bc6fdd`](https://github.com/songloft-org/songloft/commit/7bc6fdd5ac37b3ecb0e221e07544fdd1f1fbf2d2) - **playbook**: fix gh CLI command + add transfer helper script *(commit by [@hanxi](https://github.com/hanxi))*
+- [`432632d`](https://github.com/songloft-org/songloft/commit/432632d2387719c48c440dad7ef44ae0745e6a68) - complete link migration to songloft-org / songloft.hanxi.cc *(commit by [@hanxi](https://github.com/hanxi))*
+- [`392fdc4`](https://github.com/songloft-org/songloft/commit/392fdc407adf447086dfdf877260579252726b6d) - remove 'formerly MiMusic' from AGENTS.md *(commit by [@hanxi](https://github.com/hanxi))*
+
+### :wrench: Chores
+- [`07fada7`](https://github.com/songloft-org/songloft/commit/07fada71c7153f481b988f01638bf5beaf6feba3) - remove lxmusic plugins and rename xiaomi plugin (legal cleanup) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`a12a765`](https://github.com/songloft-org/songloft/commit/a12a765bb2e7bf713a3dcd988c01861635be0a69) - bump jsplugins submodule to drop xiaomi.json *(commit by [@hanxi](https://github.com/hanxi))*
+- [`8027762`](https://github.com/songloft-org/songloft/commit/80277620b88176e082d451727efee52ac415b17c) - bump plugin-toolchain, jsplugin-musicsdk, pkg/tag submodules *(commit by [@hanxi](https://github.com/hanxi))*
+- [`6c80981`](https://github.com/songloft-org/songloft/commit/6c80981075acec99ea4fdabd449e634f11b1b54b) - wire up songloft-player submodule rename (v2.0) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`abb6ade`](https://github.com/songloft-org/songloft/commit/abb6ade3edfb34a64d98203c9a030b50b4295d2a) - wire up songloft-plugin-miot submodule rename (v2.0) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`68a497f`](https://github.com/songloft-org/songloft/commit/68a497f8271a6837d61b995b39841d740e408e43) - gitignore songloft-player-build (Phase 3h follow-up) *(commit by [@hanxi](https://github.com/hanxi))*
+- [`95e3c0e`](https://github.com/songloft-org/songloft/commit/95e3c0e3f50864e7156614462bc2162048b92bef) - bump submodule pointers to alpha-published commits *(commit by [@hanxi](https://github.com/hanxi))*
+
+
 ## [1.4.1] - 2026-05-28
 
 ### ✨ Features
@@ -829,3 +866,4 @@
 - `c39f723` clean code
 - `09e2957` 简化登录
 - `f8fc2c5` 改名为mimusic
+[v2.0.0-alpha.1]: https://github.com/songloft-org/songloft/compare/e0a9fd8a53e21bc17982323664e10f8d9549531a...v2.0.0-alpha.1
