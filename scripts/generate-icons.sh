@@ -75,52 +75,19 @@ const webTasks = [
   { size: 512, out: resolve(buildDir, 'icons/Icon-maskable-512.png') },
 ];
 
+// 1024 主图：同时是 Flutter assets 资源、flutter_launcher_icons 的输入源
 const appIcon = { size: 1024, out: resolve(playerDir, 'assets/icons/app_icon.png') };
-
-const macSizes = [16, 32, 64, 128, 256, 512, 1024];
-const macDir = resolve(playerDir, 'macos/Runner/Assets.xcassets/AppIcon.appiconset');
-
-const iosMapping = [
-  { size: 20,   name: 'Icon-App-20x20@1x.png' },
-  { size: 40,   name: 'Icon-App-20x20@2x.png' },
-  { size: 60,   name: 'Icon-App-20x20@3x.png' },
-  { size: 29,   name: 'Icon-App-29x29@1x.png' },
-  { size: 58,   name: 'Icon-App-29x29@2x.png' },
-  { size: 87,   name: 'Icon-App-29x29@3x.png' },
-  { size: 40,   name: 'Icon-App-40x40@1x.png' },
-  { size: 80,   name: 'Icon-App-40x40@2x.png' },
-  { size: 120,  name: 'Icon-App-40x40@3x.png' },
-  { size: 120,  name: 'Icon-App-60x60@2x.png' },
-  { size: 180,  name: 'Icon-App-60x60@3x.png' },
-  { size: 76,   name: 'Icon-App-76x76@1x.png' },
-  { size: 152,  name: 'Icon-App-76x76@2x.png' },
-  { size: 167,  name: 'Icon-App-83.5x83.5@2x.png' },
-  { size: 1024, name: 'Icon-App-1024x1024@1x.png' },
-];
-const iosDir = resolve(playerDir, 'ios/Runner/Assets.xcassets/AppIcon.appiconset');
 
 console.log('Generating icons from favicon.svg...\\n');
 
+// Web PWA （songloft-player/web + songloft-player-build/web-embedded）+ 1024 主图
 for (const { size, out } of [...webTasks, appIcon]) {
   ensureDir(out.substring(0, out.lastIndexOf('/')));
   writeFileSync(out, await renderPng(size));
   console.log('  ✓ ' + size + 'x' + size + ' → ' + out.replace(root + '/', ''));
 }
 
-ensureDir(macDir);
-for (const size of macSizes) {
-  const out = resolve(macDir, 'app_icon_' + size + '.png');
-  writeFileSync(out, await renderPng(size));
-  console.log('  ✓ ' + size + 'x' + size + ' → ' + out.replace(root + '/', ''));
-}
-
-ensureDir(iosDir);
-for (const { size, name } of iosMapping) {
-  const out = resolve(iosDir, name);
-  writeFileSync(out, await renderPng(size));
-  console.log('  ✓ ' + size + 'x' + size + ' → songloft-player/ios/.../AppIcon.appiconset/' + name);
-}
-
+// Windows 多分辨率 ICO（flutter_launcher_icons 只生单尺寸，所以仍由本脚本生成）
 const icoOut = resolve(playerDir, 'windows/runner/resources/app_icon.ico');
 ensureDir(icoOut.substring(0, icoOut.lastIndexOf('/')));
 writeFileSync(icoOut, await renderIco([16, 32, 48, 64, 128, 256]));
@@ -130,3 +97,20 @@ console.log('\\nDone!');
 SCRIPT
 
 node "$WORKDIR/gen.mjs"
+
+# 调用 flutter_launcher_icons 生成原生平台图标：
+#   - Android：mipmap launcher + adaptive icon + Android 13+ themed icon
+#   - iOS：Assets.xcassets/AppIcon.appiconset/*
+#   - macOS：Assets.xcassets/AppIcon.appiconset/app_icon_*.png
+# 输入源是 songloft-player/assets/icons/app_icon.png（上面 node 脚本以 1024 生成）。
+if command -v flutter >/dev/null 2>&1; then
+  echo
+  echo "Generating Android / iOS / macOS launcher icons via flutter_launcher_icons..."
+  cd "$ROOT/songloft-player"
+  flutter pub get >/dev/null
+  dart run flutter_launcher_icons
+else
+  echo
+  echo "⚠  flutter 未安装，Android/iOS/macOS launcher icons 未生成。请在装好 Flutter 后手动运行："
+  echo "   cd songloft-player && flutter pub get && dart run flutter_launcher_icons"
+fi
