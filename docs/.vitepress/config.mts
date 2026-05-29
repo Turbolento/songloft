@@ -6,22 +6,38 @@ export default async () => {
   return defineConfig({
     title: "Songloft",
     description: "Songloft - 自托管个人音乐服务器，支持 JS 插件扩展，跨平台 Flutter 客户端",
-    // repowiki 是 Qoder IDE 自动生成的中文 wiki，含大量 <cite>/泛型尖括号等占位符，
-    // 不适合 VitePress 直接编译（会触发 Vue 模板未闭合标签错误）；保留在仓库里供 GitHub 浏览即可。
     srcExclude: ['repowiki/**'],
+
+    head: [
+      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      ['meta', { property: 'og:type', content: 'website' }],
+      ['meta', { property: 'og:title', content: 'Songloft - 自托管个人音乐服务器' }],
+      ['meta', { property: 'og:description', content: '简单、自由、插件化的个人音乐服务器，支持 JS 插件扩展' }],
+      ['meta', { property: 'og:image', content: 'https://songloft.hanxi.cc/logo.png' }],
+    ],
+
     themeConfig: {
-      // https://vitepress.dev/reference/default-theme-config
+      logo: '/logo.png',
+
       nav: [
         { text: '快速开始', link: '/quick-start' },
         { text: '客户端', link: '/issues/8' },
         { text: '插件', link: '/issues/4' },
         { text: 'FAQ', link: '/faq' },
         { text: '更新日志', link: '/changelog' },
-        { text: 'API 文档', link: 'https://petstore.swagger.io/?url=https://raw.githubusercontent.com/songloft-org/songloft/refs/heads/main/docs/swagger.json' },
+        {
+          text: '更多',
+          items: [
+            { text: 'API 文档', link: 'https://petstore.swagger.io/?url=https://raw.githubusercontent.com/songloft-org/songloft/refs/heads/main/docs/swagger.json' },
+            { text: 'Docker Hub', link: 'https://hub.docker.com/r/songloft/songloft' },
+            { text: '隐私说明', link: '/PRIVACY' },
+            { text: 'NOTICE', link: '/NOTICE' },
+          ],
+        },
       ],
 
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/songloft-org/songloft' }
+        { icon: 'github', link: 'https://github.com/songloft-org/songloft' },
       ],
 
       footer: {
@@ -35,35 +51,23 @@ export default async () => {
 
       editLink: {
         pattern: 'https://github.com/songloft-org/songloft/issues',
-        text: '在 GitHub 上提问'
+        text: '在 GitHub 上提问',
       },
     },
+
     sitemap: {
-      hostname: 'https://songloft.hanxi.cc'
+      hostname: 'https://songloft.hanxi.cc',
     },
-    head: [
-      ['meta', { name: 'og:type', content: 'website' }],
-      ['meta', { name: 'og:title', content: 'Songloft - 自托管个人音乐服务器' }],
-      ['meta', { name: 'og:description', content: '简单、自由、插件化的个人音乐服务器，支持 JS 插件扩展' }],
-    ],
+
     lastUpdated: true,
+
     markdown: {
-      lineNumbers: false, // 关闭代码块行号显示
-      // 自定义 markdown-it 插件
+      lineNumbers: false,
       config: (md) => {
         md.use(taskLists)
-        md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-          const aIndex = tokens[idx].attrIndex('target');
-          if (aIndex < 0) {
-            tokens[idx].attrPush(['target', '_self']); // 将默认行为改为不使用 _blank
-          } else {
-            tokens[idx].attrs![aIndex][1] = '_self'; // 替换 _blank 为 _self
-          }
-          return self.renderToken(tokens, idx, options);
-        };
       },
     },
-    logLevel: 'warn',
+
     vite: {
       plugins: [
         AutoSidebar({
@@ -73,6 +77,6 @@ export default async () => {
           ignoreList: ['repowiki'],
         }),
       ],
-    }
+    },
   })
 }

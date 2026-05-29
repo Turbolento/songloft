@@ -6,6 +6,9 @@ hero:
   name: "Songloft"
   text: "自托管个人音乐服务器"
   tagline: 数据自主 · 插件化扩展 · 仅管理你合法拥有的音乐
+  image:
+    src: /logo.png
+    alt: Songloft
   actions:
     - theme: brand
       text: 快速开始
