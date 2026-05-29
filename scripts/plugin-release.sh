@@ -13,7 +13,7 @@
 set -e
 
 # 插件列表
-PLUGINS=("miot" "lxmusic")
+PLUGINS=("miot")
 
 # 颜色输出
 GREEN='\033[0;32m'
